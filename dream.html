@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梦想之车</title>
+   
+    <style>
+    
+        :root {
+            --primary: #1a73e8;
+            --secondary: #0d47a1;
+            --accent: #ff6d00;
+            --light: #f5f8fa;
+            --dark: #263238;
+            --gray: #78909c;
+            --success: #4caf50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-accent {
+            background: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background: #e65100;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            color: var(--secondary);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+     
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .nav-links a.active:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+      
+        .luxury-hero {
+			
+			background-image: url("911111.avif");
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .luxury-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .luxury-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .luxury-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+        
+       
+        .luxury-cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .luxury-car-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.5s, box-shadow 0.5s;
+            position: relative;
+        }
+        
+        .luxury-car-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .luxury-car-img {
+            height: 250px;
+            background: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .luxury-car-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .luxury-car-card:hover .luxury-car-img img {
+            transform: scale(1.1);
+        }
+        
+        .luxury-car-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+        
+        .luxury-car-content {
+            padding: 25px;
+        }
+        
+        .luxury-car-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .luxury-car-brand {
+            font-size: 1rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .luxury-car-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .luxury-car-price span {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: 400;
+        }
+        
+        .luxury-car-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        
+        .luxury-car-meta-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+        
+        .luxury-car-meta-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .luxury-car-meta-item span {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .luxury-car-description {
+            margin-bottom: 20px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+        
+  
+        .luxury-features {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .features-list {
+            list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-item:hover {
+            transform: translateX(10px);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(26, 115, 232, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 25px;
+            font-size: 1.8rem;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+        
+        .feature-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+  
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #b0bec5;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #b0bec5;
+            font-size: 0.9rem;
+        }
+        
+  
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+       
+        @media (max-width: 992px) {
+            .luxury-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .luxury-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                background: white;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: transform 0.4s ease;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .luxury-hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .feature-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .feature-icon {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .luxury-cars-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .luxury-hero {
+                padding: 100px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="U123-1.html" class="logo">
+                    <i class="fas fa-car"></i>
+                    青春车途
+                </a>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="U123-1.html">首页</a></li>
+                    <li><a href="">梦想之车</a></li>
+                    <li><a href="">第一辆车</a></li>
+                    <li><a href="">平民神车</a></li>
+                    <li><a href="gaizhuang.html">改装入门</a></li>
+                    <li><a href="our.html">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <section class="luxury-hero">
+        <div class="container">
+            <div class="luxury-hero-content">
+                <h1>梦想之车</h1>
+                <p>探索世界顶级豪华车，体验非凡驾驶乐趣与青春热血</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">顶级豪华车</h2>
+            <div class="luxury-cars-grid">
+               
+                <div class="luxury-car-card">
+                    <div class="luxury-car-img">
+                        <div class="luxury-car-tag">限量版</div>
+                        <img src="gt.jpg" alt="宾利欧陆GT">
+                    </div>
+                    <div class="luxury-car-content">
+                        <div class="luxury-car-brand">BENTLEY</div>
+                        <h3 class="luxury-car-title">欧陆GT W12</h3>
+                        <div class="luxury-car-price">新车¥3,280,000 <span>起</span></div>
+						<div class="luxury-car-price">二手仅¥330,000 <span>起</span></div>
+                        <div class="luxury-car-meta">
+                            <div class="luxury-car-meta-item">
+                               排量
+                                <span>6.0T W12</span>
+                            </div>
+                            <div class="luxury-car-meta-item">
+                               动力
+                                <span>635马力</span>
+                            </div>
+                            <div class="luxury-car-meta-item">
+                                百公里加速
+                                <span>3.6秒</span>
+                            </div>
+                        </div>
+                        <p class="luxury-car-description">
+                            宾利欧陆GT完美融合了豪华与性能，手工打造的内饰彰显非凡工艺，W12发动机提供澎湃动力，是优雅与力量的完美结合。
+                        </p>
+                        <a href="#" class="btn" style="width: 100%; text-align: center;">咨询二手车详情</a>
+                    </div>
+                </div>
+                
+               
+                <div class="luxury-car-card">
+                    <div class="luxury-car-img">
+                        <div class="luxury-car-tag">新款</div>
+                        <img src="porsche-911-turbo-s-1.jpg" alt="保时捷911 Turbo S">
+                    </div>
+                    <div class="luxury-car-content">
+                        <div class="luxury-car-brand">PORSCHE</div>
+                        <h3 class="luxury-car-title">911 Turbo S</h3>
+                        <div class="luxury-car-price">新车¥2,398,000 <span>起</span></div>
+						<div class="luxury-car-price">二手仅¥898,000 <span>起</span></div>
+                        <div class="luxury-car-meta">
+                            <div class="luxury-car-meta-item">
+                               排量
+                                <span>3.8T H6</span>
+                            </div>
+                            <div class="luxury-car-meta-item">
+                              动力
+                                <span>650马力</span>
+                            </div>
+                            <div class="luxury-car-meta-item">
+                              百公里加速
+                                <span>2.7秒</span>
+                            </div>
+                        </div>
+                        <p class="luxury-car-description">
+                            保时捷911 Turbo S是性能与日常实用性的完美平衡，标志性的设计搭配最新科技，提供无与伦比的驾驶体验和赛道表现。
+                        </p>
+                        <a href="#" class="btn" style="width: 100%; text-align: center;">咨询二手车详情</a>
+                    </div>
+                </div>
+                
+               
+                <div class="luxury-car-card">
+                    <div class="luxury-car-img">
+                        <div class="luxury-car-tag">稀有</div>
+                        <img src="bjd.jpg" alt="布加迪威龙">
+                    </div>
+                  <div class="luxury-car-content">
+                        <div class="luxury-car-brand">BUGATTI</div>
+                        <h3 class="luxury-car-title">威龙 16.4</h3>
+                        <div class="luxury-car-price">新车¥25,000,000 <span>起</span></div>
+					   <div class="luxury-car-price">二手仅¥3,800,000 <span>起</span></div>
+                        <div class="luxury-car-meta">
+                            <div class="luxury-car-meta-item">
+                                排量
+                                <span>8.0T W16</span>
+                            </div>
+                            <div class="luxury-car-meta-item">
+                                动力
+                                <span>1200马力</span>
+                            </div>
+                            <div class="luxury-car-meta-item">
+                                百公里加速
+                                <span>2.5秒</span>
+                            </div>
+                        </div>
+                    <p class="luxury-car-description">
+                            布加迪威龙是汽车工程的巅峰之作，极速可达431km/h，限量生产使其成为收藏家的梦想之选，代表了速度与奢华的终极结合。
+                      </p>
+                      <a href="#" class="btn" style="width: 100%; text-align: center;">咨询二手车详情</a>
+                    </div>
+                </div>
+                
+        
+                <div class="luxury-car-card">
+                    <div class="luxury-car-img">
+                        <div class="luxury-car-tag">豪华</div>
+                        <img src="mbh.jfif" alt="迈巴赫S级">
+                    </div>
+                    <div class="luxury-car-content">
+                        <div class="luxury-car-brand">MAYBACH</div>
+                        <h3 class="luxury-car-title">S 680</h3>
+                        <div class="luxury-car-price">新车¥3,298,000 <span>起</span></div>
+						<div class="luxury-car-price">二手仅¥398,000 <span>起</span></div>
+                        <div class="luxury-car-meta">
+                            <div class="luxury-car-meta-item">
+                              排量
+                                <span>6.0T V12</span>
+                            </div>
+                            <div class="luxury-car-meta-item">
+                                动力
+                                <span>630马力</span>
+                            </div>
+                            <div class="luxury-car-meta-item">
+                              特点
+                                <span>极致舒适</span>
+                            </div>
+                        </div>
+                        <p class="luxury-car-description">
+                            迈巴赫S 680重新定义了豪华轿车的标准，后排行政座椅提供飞机头等舱般的舒适体验，是商务精英的移动办公室和休息室。
+                        </p>
+                        <a href="#" class="btn" style="width: 100%; text-align: center;">咨询二手车详情</a>
+                    </div>
+                </div>
+                
+        
+                <div class="luxury-car-card">
+                    <div class="luxury-car-img">
+                        <div class="luxury-car-tag">定制</div>
+                        <img src="lsls.jpg" alt="劳斯莱斯幻影">
+                    </div>
+                    <div class="luxury-car-content">
+                        <div class="luxury-car-brand">ROLLS-ROYCE</div>
+                        <h3 class="luxury-car-title">幻影 VIII</h3>
+                        <div class="luxury-car-price">新车¥7,900,000 <span>起</span></div>
+						 <div class="luxury-car-price">二手仅¥1,280,000 <span>起</span></div>
+                        <div class="luxury-car-meta">
+                            <div class="luxury-car-meta-item">
+                               动力
+                                <span>6.7T V12</span>
+                            </div>
+                            <div class="luxury-car-meta-item">
+                               排量
+                                <span>571马力</span>
+                            </div>
+                            <div class="luxury-car-meta-item">
+                               特点
+                                <span>全定制</span>
+                            </div>
+                        </div>
+                        <p class="luxury-car-description">
+                            劳斯莱斯幻影是世界上最奢华的轿车之一，提供近乎无限的定制选项，从车漆到内饰均可根据客户需求个性化打造。
+                        </p>
+                        <a href="#" class="btn" style="width: 100%; text-align: center;">咨询二手车详情</a>
+                    </div>
+                </div>
+                
+      
+                <div class="luxury-car-card">
+                    <div class="luxury-car-img">
+                        <div class="luxury-car-tag">性能</div>
+                        <img src="lbjn.jfif" alt="兰博基尼Aventador">
+                    </div>
+                    <div class="luxury-car-content">
+                        <div class="luxury-car-brand">LAMBORGHINI</div>
+                        <h3 class="luxury-car-title">Aventador SVJ</h3>
+                        <div class="luxury-car-price">新车¥7,550,000 <span>起</span></div>
+						 <div class="luxury-car-price">二手仅¥1,450,000 <span>起</span></div>
+                        <div class="luxury-car-meta">
+                            <div class="luxury-car-meta-item">
+                               排量
+                                <span>6.5L V12</span>
+                            </div>
+                            <div class="luxury-car-meta-item">
+                               动力
+                                <span>770马力</span>
+                            </div>
+                            <div class="luxury-car-meta-item">
+                               百公里加速
+                                <span>2.8秒</span>
+                            </div>
+                        </div>
+                        <p class="luxury-car-description">
+                            兰博基尼Aventador SVJ是超级跑车的代表之作，拥有极具攻击性的外观设计和令人窒息的性能表现，是速度与激情的化身。
+                        </p>
+                        <a href="#" class="btn" style="width: 100%; text-align: center;">咨询二手车详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+
+  
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>青春车途</h3>
+                    <p>每辆车，都代表着一个时代</p>
+    
+                </div>
+                
+                <div class="footer-col">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">车辆检测</a></li>
+                        <li><a href="cars.html">车辆买卖</a></li>
+                        <li><a href="sell.html">我要卖车</a></li>
+                        <li><a href="about.html">关于我们</a></li>
+                        <li><a href="faq.html">常见问题</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>联系我们</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 福建省龙岩市新罗区闽系职业技术学院</li>
+                        <li><i class="fas fa-phone"></i> 0597-24143404</li>
+                        <li><i class="fas fa-envelope"></i> 24143404@qq.com</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>订阅我们</h3>
+                    <p>订阅获取最新车辆信息及优惠活动</p>
+                    <form>
+                        <div class="form-group">
+                         
+                        </div>
+                        <button class="btn" style="width: 100%;">订阅</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 青春车途 - 大学生二手车交易平台 24级计应4班 杨建郴 叶华宁 陈光灿</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // 豪华车卡片悬停效果
+        const luxuryCarCards = document.querySelectorAll('.luxury-car-card');
+        luxuryCarCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-15px)';
+                card.style.boxShadow = '0 20px 40px rgba(0,0,0,0.2)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+            });
+        });
+        
+        // 特色服务项悬停效果
+        const featureItems = document.querySelectorAll('.feature-item');
+        featureItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'translateX(10px)';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'translateX(0)';
+            });
+        });
+    </script>
+</body>
+</html>

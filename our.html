@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人人车品牌合伙人</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑";
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* 顶部导航 */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 10px 0;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f54;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .nav-links a.active {
+            color: #f54;
+        }
+        
+        .login-btn {
+            background-color: #f54;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+     
+        .hero {
+            background-color: #ff6400;
+            padding: 30px 0;
+            position: relative;
+            min-height: 400px;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            color: white;
+            padding: 30px;
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+        
+        .tag {
+            background-color: rgba(0,0,0,0.2);
+            padding: 5px 10px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 10px;
+            border-radius: 3px;
+        }
+        
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .store-image {
+            position: absolute;
+            right: 0;
+            top: 0;
+            max-width: 50%;
+            height: auto;
+        }
+        
+        
+        .contact-form {
+            background-color: #fff;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        
+        .phone {
+            color: #f54;
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+        
+        .phone-number {
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .form-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-right: 10px;
+        }
+        
+        .submit-btn {
+            background-color: #f54;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        
+ 
+        .title-section {
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .title-section h2 {
+            font-size: 30px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .title-section p {
+            font-size: 16px;
+            color: #666;
+        }
+        
+      
+        .brand-section {
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .brand-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .brand-desc {
+            font-size: 14px;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .brand-image {
+            max-width: 100%;
+            height: auto;
+            margin: 30px auto;
+            display: block;
+        }
+        
+ 
+        .feature-section {
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .feature-content {
+            max-width: 45%;
+        }
+        
+        .feature-title {
+            font-size: 24px;
+            color: #f54;
+            margin-bottom: 20px;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .feature-image {
+            max-width: 45%;
+            height: auto;
+			
+				
+			
+        }
+    
+        .management-section {
+            padding: 40px 0;
+        }
+        
+        .management-content {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        
+        .management-text {
+            max-width: 45%;
+            text-align: right;
+            padding-right: 20px;
+        }
+        
+        .management-image {
+            max-width: 45%;
+            height: auto;
+        }
+        
+  
+        .partner-section {
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .partner-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .partner-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .partner-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .partner-list li {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+     
+        .golden-section {
+            background-color: #f5f5f5;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .golden-image {
+            max-width: 400px;
+            margin: 0 auto 40px;
+        }
+        
+        .join-us {
+            font-size: 24px;
+            margin: 30px 0;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .hotline {
+            margin: 30px 0;
+            color: #f54;
+        }
+        
+        .hotline-number {
+            font-size: 48px;
+            font-weight: bold;
+        }
+        
+ 
+        .faq-section {
+            padding: 40px 0;
+			text-align: center;
+        }
+        
+        .faq-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 30px;
+			text-align: center;
+        }
+        
+        .faq-item {
+            margin-bottom: 30px;
+			text-align: center;
+        }
+        
+        .faq-question {
+            font-size: 18px;
+            color: #f54;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+			text-align: center;
+        }
+        
+        .faq-question span {
+            width: 24px;
+            height: 24px;
+            background-color: #f54;
+            color: white;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+			text-align: center;
+        }
+        
+        .faq-answer {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+			text-align: center;
+        }
+        
+     
+        .note {
+            font-size: 12px;
+            color: #999;
+            margin-top: 30px;
+            max-width: 800px;
+			text-align: center;
+			margin-left: 200px
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .feature-section, .management-section {
+                flex-direction: column;
+            }
+            
+            .feature-content, .feature-image, 
+            .management-text, .management-image {
+                max-width: 100%;
+                width: 100%;
+                text-align: left;
+                margin-bottom: 20px;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+            }
+            
+            .store-image {
+                position: static;
+                max-width: 100%;
+                margin-top: 20px;
+            }
+            
+            .contact-form {
+                flex-direction: column;
+            }
+        }
+	 .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="nav">
+                <div class="logo">青春车途</div>
+                <ul class="nav-links">
+					<li><a href="U123-1.html">首页</a></li>
+                    <li><a href="#" class="active">全国</a></li>
+                    <li><a href="#">买车</a></li>
+                    <li><a href="#">卖车</a></li>
+                    <li><a href="#">加品牌合伙人</a></li>
+                </ul>
+                <button class="login-btn">登录</button>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="tag">青春车途 品牌合伙人</div>
+                <h1>你离成功<br>只差一个品牌！</h1>
+                <p>官方直营店，专注专业品牌经营</p>
+                <p>青春车途直营店，</p>
+                <p>已在200+城市开设，备受好评！</p>
+                <p>即日起青春车途品牌合伙人招募中！</p>
+                <p>APP流量、资金支持、提成不封顶，实现快速盈利</p>
+            </div>
+            <div class="store-image">
+              <img src="R-C (2).jfif" />
+            </div>
+        </div>
+    </section>
+   <div class="contact-form container">
+        <div>
+            <div class="phone-number">官方唯一加盟热线：</div>
+            <div class="phone">400-026-3215</div>
+        </div>
+        <input type="text" class="form-input" placeholder="请输入手机号码">
+        <button class="submit-btn">立即咨询</button>
+	</div>
+    
+    <section class="title-section container">
+        <h2>品牌合伙人</h2>
+        <p>获得的3大赋能</p>
+    </section>
+    
+    <section class="brand-section container">
+        <h3 class="brand-title">品牌赋能</h3>
+        <p class="brand-desc">店面升级形象设计，形象能力显著提升<br>
+        品牌授权，顾客认可度高，增加品牌溢价能力</p>
+        <div class="brand-image">
+        </div>
+    </section>
+    
+    <section class="feature-section container">
+        <div class="feature-content">
+            <h3 class="feature-title">市场赋能</h3>
+            <ul class="feature-list">
+              <li>流量百万级资源，搭建新零售交易场景</li>
+                <li>线上线下联动看车，精准匹配车型到用户</li>
+                <li>智能数据分析，精准客户资源导入</li>
+                <li>多方资源市场加持</li>
+                <li>青春车途专属客服话术系统，24小时专业电销服务支持，智能客户外呼系统</li>
+            </ul>
+        </div>
+        <div class="feature-image">
+      <img src="OIP-C (1).jfif" />
+        </div>
+    </section>
+    
+    <section class="feature-section container">
+        <div class="feature-content">
+            <h3 class="feature-title">系统赋能</h3>
+            <ul class="feature-list">
+                <li>全场景线上化作业系统，经营管理效率大幅提升；</li>
+                <li>智能定价系统，精准制定合理价格；</li>
+                <li>智能CRM系统，全场景（微信、APP、短信）会员触达；</li>
+				<li>海量数据精准分析</li>
+            </ul>
+        </div>
+        <div class="feature-image">
+          <img src="R-C (1).jfif" />
+        </div>
+    </section>
+    
+    <section class="feature-section container">
+        <div class="feature-content">
+            <h3 class="feature-title">生态赋能</h3>
+            <ul class="feature-list">
+                <li>多元金融服务支持，满足客户需求，提高成单率；</li>
+                <li>交易流程服务标准化，稳定提升客户体验；</li>
+                <li>专业的培训体系，全方位提升业务能力；</li>
+				<li>更能服务青年人的市场需求；</li>
+            </ul>
+        </div>
+        <div class="feature-image">
+         <img src="1694418584145215.png" />
+        </div>
+    </section>
+    
+   
+    
+    <section class="partner-section container">
+        <h3 class="partner-title">合伙人加盟产品介绍</h3>
+        <div class="partner-content">
+            <h4>加盟模式</h4>
+            <ul class="partner-list">
+                <li>直接与青春车途总部签约，成为人人车品牌合伙人</li>
+                <li>按标准装修，升级店面形象（公司可提供装修支持）</li>
+                <li>合伙人负责店面日常运营及管理，在线支付</li>
+                <li>按平台规则及服务流程进行交易</li>
+                <li>获得青春车途"品牌合伙人/流量合伙人"认证</li>
+            </ul>
+            
+            <h4>收费标准</h4>
+            <ul class="partner-list">
+                <li>装修补贴：2万元起/套餐包（根据城市等级不同）</li>
+                <li>加盟保证金：1万元起（根据城市等级不同）</li>
+                <li>获得的返利：品牌授权、高级车源、线上推广、车源支持、买好车、营销支持、经营培训等多方支持</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section class="golden-section">
+        <div class="golden-image">
+            <img src="M-296893-FA4E58BD.jpg-1.jpg">
+        </div>
+    </section>
+    
+    <section class="partner-section container">
+        <p>每一个合伙人收获的每一分成就</p>
+        <p>是青春车途前进的最大动力</p>
+        <div class="join-us">即刻加入！</div>
+        <div class="hotline">
+            <div>官方唯一加盟热线:</div>
+            <div class="hotline-number">0597-24143404</div>
+        </div>
+    </section>
+    
+    <section class="faq-section container">
+        <h3 class="faq-title">加盟答疑专区</h3>
+        
+        <div class="faq-item">
+            <div class="faq-question"><span>Q1</span>成为青春车途品牌合伙人有什么条件？</div>
+            <div class="faq-answer">有现成的二手车经营场地，对现有经营结合青春车途品牌进行改造，满足品牌和服务标准要求。</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question"><span>Q2</span>成为青春车途品牌合伙人后我需要做什么？</div>
+            <div class="faq-answer">在开展合伙人业务过程中，负责店面的日常经营管理，为买卖双方提供购车、售车、整备交付等服务。</div>
+        </div>
+        
+        <div class="note">
+            <p>1、以上金额均为预估，实际金额以最终合同为准；</p>
+            <p>2、青春车途有权根据市场情况对加盟政策进行调整，具体以实际为准；</p>
+            <p>3、参与活动规则详见活动页面，活动最终解释权归青春车途所有；</p>
+            <p>4、服务监督电话：400-026-3215</p>
+        </div>
+    </section>
+     <div class="footer">青春车途版权所有2025-2077 闽ICP备 114514号&nbsp;&nbsp;闽公安网备1145141919810</div>
+    <script>
+     
+        document.addEventListener('DOMContentLoaded', function() {
+           
+            const submitBtn = document.querySelector('.submit-btn');
+            if (submitBtn) {
+                submitBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const phoneInput = document.querySelector('.form-input');
+                    if (phoneInput.value.trim() === '') {
+                        alert('请输入您的手机号码');
+                        return;
+                    }
+                    alert('感谢您的咨询，我们会尽快与您联系！');
+                });
+            }
+            
+         
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+                } else {
+                    header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
